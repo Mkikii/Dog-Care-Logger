@@ -59,3 +59,45 @@ def delete_care_event_by_id (care_event_id):
     session.commit() 
 
 
+#find dog by id
+def find_dog_by_id(dog_id):
+  dog = session.query(Dogs).where(Dogs.id == dog_id).first()
+  return dog
+
+#find location by id 
+def find_location_by_id(location_id):
+  location = session.query(Locations).where(Locations.id == location_id).first()
+  return location
+
+
+#find care type by id    
+def find_care_type_by_id(care_type_id ):
+  care_type = session.query(Care_types).where(Care_types.id == care_type_id ).first()
+  return care_type 
+
+
+#find care event by id    
+def find_care_event_by_id(care_event_id ):
+  care_event = session.query(Care_events).where(Care_events.id == care_event_id ).first()
+  return care_event 
+   
+#find all dogs
+def find_all_dogs():
+  dog = session.query(Dogs).all()
+  return dog  
+
+#find all locations
+def find_all_locations():
+  location = session.query(Locations).all()
+  return location       
+
+#find all care_types
+def find_all_care_types():
+  care_type = session.query(Care_types).all()
+  return care_type
+
+#find all care_events
+def find_all_care_events():
+  care_event = session.query(Care_events).all()
+  return care_event
+
