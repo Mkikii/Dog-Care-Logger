@@ -30,3 +30,32 @@ def add_new_Care_Event (dog_id, name , care_type_id, perfomed_at, details, notes
   session.commit()
   return new_care_event
 
+#delete Dog
+def delete_dog_by_id (dog_id):
+  dog = session.query(Dogs).where(Dogs.id == dog_id).first()
+  if dog:
+    session.delete(dog)
+    session.commit()
+
+#delete Location
+def delete_location_by_id (location_id):
+  location = session.query(Locations).where(Locations.id == location_id).first()
+  if location:
+    session.delete(location)
+    session.commit()    
+
+#delete care_type
+def delete_care_type_by_id (care_type_id):
+  care_type = session.query(Care_types).where(Care_types.id == care_type_id).first()
+  if care_type:
+    session.delete(care_type)
+    session.commit()
+
+#delete care_event
+def delete_care_event_by_id (care_event_id):
+  care_event = session.query(Care_events).where(Care_events.id == care_event_id).first()
+  if care_event:
+    session.delete(care_event)
+    session.commit() 
+
+
