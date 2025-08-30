@@ -22,7 +22,22 @@ class Dogs(Base):
 
     location = relationship('Locations', back_populates='dogs')
     care_events = relationship('Care_events', back_populates='dog')
-
+    
+    @property
+    def validated_name(self):
+        return self.name
+    
+    @validated_name.setter
+    def validated_name(self, value):
+        if not isinstance(value, str):
+            raise ValueError("Name must be a string")
+        if len(value.strip()) == 0:
+            raise ValueError("Name cannot be empty")
+        if len(value) > 50:
+            raise ValueError("Name cannot exceed 50 characters")
+        self.name = value.strip()
+        
+       
 
 class Locations(Base):
     __tablename__ = "Locations"
