@@ -1,297 +1,297 @@
 # Dog Care Logger
 
-A command-line dog care management application built with Python, SQLAlchemy, and Click. Easily manage dog profiles, kennel locations, care types, and log care events.
+#### A comprehensive dog care management application built using Python with SQLAlchemy and Click for managing dog care facilities, tracking dog profiles, and logging care events.
 
-**Author:** James Kamau
+#### By **James Kamau**
 
-## Overview
+## Description
 
-Dog Care Logger helps dog care facilities streamline operations by tracking dogs, managing kennel locations, defining care activities, and logging events. It uses Python, SQLAlchemy ORM, and Click for a modern CLI and database experience.
+Dog Care Logger is a command-line interface (CLI) application designed for dog care facilities to manage their operations efficiently. The application provides comprehensive functionality for tracking dogs, managing kennel locations, defining care types, and logging care events. Built with Python, SQLAlchemy ORM, and Click for the CLI interface, it demonstrates modern database management and command-line application development concepts.
 
 ## Features
 
-- **Dog Management:** Add, view, update, and delete dog profiles (breed, birth date, notes).
-- **Location Management:** Track kennel locations and population.
-- **Care Type Management:** Define care activities and intervals.
-- **Care Event Logging:** Record care activities for each dog.
-- **CRUD Operations:** Full create, read, update, and delete support.
-- **Data Validation:** Robust input validation and error handling.
-- **SQLite Database:** Efficient local storage.
-- **User-Friendly CLI:** Intuitive, color-coded menus and prompts.
+- **Dog Management**: Create, view, and manage dog profiles with detailed information including breed, date of birth, and special notes
+- **Location Management**: Track kennel locations with population counts and unique identifiers
+- **Care Type Management**: Define different types of care activities with descriptions and default intervals
+- **Care Event Logging**: Record and track all care activities performed for each dog
+- **CRUD Operations**: Full Create, Read, Update, and Delete functionality for all entities
+- **Data Validation**: Comprehensive input validation with proper error handling
+- **SQLite Database**: Lightweight and efficient database storage using SQLite
+- **User-Friendly CLI**: Intuitive command-line interface with color-coded menus and prompts
+- **Database Migrations**: Alembic integration for schema management
+- **Seed Data**: Pre-populated sample data for testing
 
-## Technologies
+## Technologies Used
 
-- Python 3.8+
-- SQLAlchemy (ORM)
-- Click (CLI framework)
-- SQLite (database)
-- DateTime (date/time handling)
+- **Python 3.8+**: Core programming language
+- **SQLAlchemy**: Object-Relational Mapping (ORM) for database operations
+- **Click**: Python package for creating beautiful command-line interfaces
+- **SQLite**: Lightweight database engine for data persistence
+- **DateTime**: Python module for handling date and time operations
+- **Alembic**: Database migration tool
+- **Pipenv**: Python dependency management
 
 ## Project Structure
+DOG-CARE-LOGGER/
+├── alembic/ # Database migration scripts
+├── Lib/ # Library modules
+│ ├── pycache/ # Python cache files
+│ ├── init.py # Package initialization
+│ ├── CRUD.py # Database operations and CRUD functions
+│ └── Models.py # SQLAlchemy database models and schema
+├── db/ # Database-related files
+│ └── seed.py # Database seeding script
+├── pycache/ # Python cache files
+├── vscode/ # VSCode configuration
+├── venv/ # Virtual environment
+├── dogs.db # SQLite database file
+├── Dogs.db # Secondary database file (if any)
+├── Main.py # Main CLI application entry point
+├── alembic.ini # Alembic configuration
+├── helpers.py # Utility functions
+├── Pipfile # Pipenv dependency management
+├── LICENSE # Project license
+└── README.md # Project documentation
 
-```
-Dog-Care-Logger/
-├── Models.py          # SQLAlchemy models
-├── CRUD.py            # Database operations
-├── main.py            # CLI entry point
-├── dogs.db            # SQLite database (generated)
-├── requirements.txt   # Dependencies
-└── README.md          # Documentation
-```
+text
 
-## Installation
+## Installation and Setup
 
 ### Prerequisites
 
-- Python 3.8+
-- pip
+- Python 3.8 or higher
+- pip (Python package manager)
 
-### Setup Steps
+### Installation Process
 
-1. Clone or download the project.
-2. Navigate to the directory:
+1. **Navigate to the project directory**:
   ```bash
-  cd Dog-Care-Logger
+  cd DOG-CARE-LOGGER
   ```
-3. Install dependencies:
+2. **Set up virtual environment (if using Pipenv):**
   ```bash
-  pip install sqlalchemy click
+  pipenv install
+  pipenv shell
   ```
-4. Initialize the database:
+  Or using regular virtual environment:
   ```bash
-  python Models.py
+  python -m venv venv
+  source venv/bin/activate  # On Windows: venv\Scripts\activate
   ```
-5. Run the application:
+3. **Install the required dependencies:**
   ```bash
-  python main.py
+  pip install sqlalchemy click alembic
+  ```
+4. **Initialize the database:**
+  ```bash
+  python Lib/Models.py
+  ```
+5. **Run database migrations (if needed):**
+  ```bash
+  alembic upgrade head
+  ```
+6. **Seed the database with sample data:**
+  ```bash
+  python db/seed.py
+  ```
+7. **Run the application:**
+  ```bash
+  python Main.py
   ```
 
-## Usage
+## How to Use
 
-Start the CLI:
+### Starting the Application
+
+Run the main script to start the interactive CLI:
+
 ```bash
-python main.py
+python Main.py
 ```
 
-### Main Menu
+### Main Menu Options
 
-1. **Dog Management**
-  - Add, find, view, delete dog profiles
-2. **Location Management**
-  - Add, find, view, delete locations
-3. **Care Type Management**
-  - Add, find, view, delete care types
-4. **Care Event Management**
-  - Add, find, view, delete care events
+The application provides four main management areas:
 
-### Data Input Format
+- DOG MANAGEMENT - Manage dog profiles
+- LOCATION MANAGEMENT - Manage kennel locations
+- CARE TYPE MANAGEMENT - Define care activities
+- CARE EVENT MANAGEMENT - Log care activities
 
-- **Dates:** `YYYY-MM-DD` (e.g., `2025-08-15`)
-- **Date-Time:** `YYYY-MM-DD HH:MM:SS` (e.g., `2025-08-15 14:30:00`)
-- **IDs:** Integer values
+### Database Operations
+
+#### Running Migrations
+
+```bash
+# Create new migration
+alembic revision --autogenerate -m "description"
+
+# Apply migrations
+alembic upgrade head
+
+# Revert migrations
+alembic downgrade -1
+```
+
+#### Seeding Database
+
+```bash
+python db/seed.py
+```
+
+## Module Structure
+
+### Lib/Models.py
+
+Contains SQLAlchemy ORM models for:
+
+- Dogs - Dog profiles and information
+- Locations - Kennel locations and capacity
+- Care_types - Types of care activities
+- Care_events - Logged care activities
+
+### Lib/CRUD.py
+
+Contains CRUD operations for:
+
+- Create, Read, Update, Delete operations
+- Database session management
+- Data validation and error handling
+
+### Main.py
+
+Main application entry point with:
+
+- CLI interface using Click
+- Menu navigation system
+- User input handling
+- Color-coded output
+
+### db/seed.py
+
+Database seeding script with:
+
+- Sample dog data
+- Pre-defined locations
+- Care type definitions
+- Example care events
 
 ## Database Schema
 
-### Dogs Table
-```sql
-CREATE TABLE Dogs (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  name VARCHAR(50) NOT NULL UNIQUE,
-  breed VARCHAR(100) NOT NULL,
-  date_of_birth DATETIME NOT NULL,
-  location_id INTEGER NOT NULL,
-  last_attended_to DATETIME,
-  notes TEXT,
-  FOREIGN KEY (location_id) REFERENCES Locations(id)
-);
-```
+### Key Tables
 
-### Locations Table
-```sql
-CREATE TABLE Locations (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  kennel_number INTEGER NOT NULL UNIQUE,
-  population INTEGER
-);
-```
+**Dogs Table**  
+id, name, breed, date_of_birth  
+location_id, last_attended_to, notes  
+Relationships with Locations and Care_events
 
-### Care_types Table
-```sql
-CREATE TABLE Care_types (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name VARCHAR(50) NOT NULL UNIQUE,
-  description TEXT,
-  default_interval_days INTEGER
-);
-```
+**Locations Table**  
+id, kennel_number, population  
+Relationship with Dogs
 
-### Care_events Table
-```sql
-CREATE TABLE Care_events (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name VARCHAR(50) NOT NULL UNIQUE,
-  dog_id INTEGER NOT NULL,
-  care_type_id INTEGER,
-  performed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  details TEXT,
-  notes TEXT,
-  FOREIGN KEY (dog_id) REFERENCES Dogs(id),
-  FOREIGN KEY (care_type_id) REFERENCES Care_types(id)
-);
-```
+**Care_types Table**  
+id, name, description, default_interval_days  
+Relationship with Care_events
+
+**Care_events Table**  
+id, name, dog_id, care_type_id  
+performed_at, details, notes  
+Relationships with Dogs and Care_types
 
 ## API Reference (CRUD Functions)
 
-### Dog Operations
+### Dog Operations (Lib/CRUD.py)
 
-- `add_new_Dog(created_at, name, breed, date_of_birth, location_id, last_attended_to, notes)` - Create new dog profile
-- `find_dog_by_id(dog_id)` - Retrieve dog by ID
-- `find_all_dogs()` - Get all dogs
-- `delete_dog_by_id(dog_id)` - Delete dog profile
+- add_new_Dog() - Create new dog profile
+- find_dog_by_id() - Retrieve dog by ID
+- find_all_dogs() - Get all dogs
+- delete_dog_by_id() - Delete dog profile
 
 ### Location Operations
 
-- `add_new_Location(kennel_number, population)` - Create new location
-- `find_location_by_id(location_id)` - Retrieve location by ID
-- `find_all_locations()` - Get all locations
-- `delete_location_by_id(location_id)` - Delete location
+- add_new_Location() - Create new location
+- find_location_by_id() - Retrieve location by ID
+- find_all_locations() - Get all locations
+- delete_location_by_id() - Delete location
 
 ### Care Type Operations
 
-- `add_new_Care_Type(name, description, default_interval_days)` - Create new care type
-- `find_care_type_by_id(care_type_id)` - Retrieve care type by ID
-- `find_all_care_types()` - Get all care types
-- `delete_care_type_by_id(care_type_id)` - Delete care type
+- add_new_Care_Type() - Create new care type
+- find_care_type_by_id() - Retrieve care type by ID
+- find_all_care_types() - Get all care types
+- delete_care_type_by_id() - Delete care type
 
 ### Care Event Operations
 
-- `add_new_Care_Event(dog_id, name, care_type_id, performed_at, details, notes)` - Create new care event
-- `find_care_event_by_id(care_event_id)` - Retrieve care event by ID
-- `find_all_care_events()` - Get all care events
-- `delete_care_event_by_id(care_event_id)` - Delete care event
-
-## Example Usage
-
-### Adding a New Dog
-
-Select "1 DOG MANAGEMENT" from main menu
-
-Choose "1 Add new dog profile"
-
-Enter dog details:
-
-- Name: Max
-- Breed: Golden Retriever
-- D.O.B: 2023-05-15
-- Time created: 2025-08-15 10:00:00
-- Last attended: 2025-08-15 10:00:00
-- Notes: Friendly and energetic
-- Location ID: 1
-
-### Logging a Care Event
-
-Select "4 CARE EVENT MANAGEMENT"
-
-Choose "1 Add new care event"
-
-Enter event details:
-
-- Name: Morning Walk
-- Performed at: 2025-08-15 08:30:00
-- Details: 30-minute walk around the park
-- Notes: Good behavior on leash
-- Dog ID: 1
-- Care Type ID: 1
-- Location ID: 1
-
-## Error Handling
-
-The application includes comprehensive error handling for:
-
-- Invalid date formats
-- Non-existent IDs
-- Database constraint violations
-- Invalid user inputs
-- Type validation errors
-- SQLite datetime object requirements
-
-## Common Issues and Solutions
-
-### Database Connection Issues
-
-```bash
-# If you encounter database connection problems:
-rm dogs.db
-python Models.py
-```
-
-### Module Not Found Errors
-
-```bash
-# Ensure all dependencies are installed:
-pip install --upgrade sqlalchemy click
-```
-
-### Date Format Errors
-
-Use exact format: YYYY-MM-DD for dates
-
-Use exact format: YYYY-MM-DD HH:MM:SS for datetime
+- add_new_Care_Event() - Create new care event
+- find_care_event_by_id() - Retrieve care event by ID
+- find_all_care_events() - Get all care events
+- delete_care_event_by_id() - Delete care event
 
 ## Development
 
-### Adding New Features
-
-- Update database models in Models.py
-- Add CRUD operations in CRUD.py
-- Implement CLI interface in main.py
-- Test thoroughly with various inputs
-
-### Database Migrations
-
-For schema changes, use Alembic migrations:
+### Running Tests
 
 ```bash
-pip install alembic
-alembic init migrations
+# Run specific module tests
+python -m pytest tests/test_models.py
+python -m pytest tests/test_crud.py
+```
+
+### Code Structure
+
+```python
+# Import modules correctly
+from Lib.Models import Dogs, Locations, session
+from Lib.CRUD import add_new_Dog, find_dog_by_id
+```
+
+### Adding New Features
+
+- Update models in Lib/Models.py
+- Add CRUD operations in Lib/CRUD.py
+- Update CLI interface in Main.py
+- Add migration scripts in alembic/versions/
+- Test thoroughly
+
+## Common Issues and Solutions
+
+### Module Import Issues
+
+```python
+# Correct import syntax
+from Lib import CRUD, Models
+# or
+from Lib.CRUD import add_new_Dog
+```
+
+### Database Migration Issues
+
+```bash
+# Reset and recreate database
+rm dogs.db
+alembic upgrade head
+python db/seed.py
+```
+
+### Virtual Environment Issues
+
+```bash
+# Recreate virtual environment
+rm -rf venv
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 
 ## Support and Contact Details
 
 If you have any questions, suggestions, or need assistance, please contact:
 
-- GitHub: @JamesKamau-5773
-- Email: [Your Email Address]
-
-## Contributing
-
-- Fork the repository
-- Create a feature branch (`git checkout -b feature/amazing-feature`)
-- Commit your changes (`git commit -m 'Add amazing feature'`)
-- Push to the branch (`git push origin feature/amazing-feature`)
-- Open a Pull Request
-
-## Future Enhancements
-
-- Web interface using Flask/Django
-- User authentication and authorization
-- Reporting and analytics features
-- Email notifications for care schedules
-- Mobile application interface
-- Integration with veterinary APIs
-- Image upload for dog profiles
+GitHub: @JamesKamau-5773
 
 ## License
 
-MIT License
-
-Copyright © 2025 James Kamau
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+MIT License - See LICENSE file for details.
 
 If you find this project useful, please give it a star on GitHub!
