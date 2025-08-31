@@ -209,17 +209,17 @@ while True:
                 click.secho("ADD NEW CARE EVENT", fg='green', bold=True)
                 name = click.prompt("Enter name of event")
                 performed_at = click.prompt(
-                    "Enter date and time when event was performed")
+                    "Enter date and time when event was performed  (YYYY-MM-DD HH:MM:SS)")
                 details = click.prompt(
                     "Enter details", default="", show_default=False)
                 notes = click.prompt(
                     "Do you have anything to note?", default="", show_default=False)
                 dog_id = click.prompt("Enter dog ID", type=int)
                 care_type_id = click.prompt("Enter care type ID", type=int)
-                location_id = click.prompt("Enter location ID", type=int)
+                
 
                 add_new_Care_Event(name, performed_at, details,
-                                   notes, dog_id, care_type_id, location_id)
+                                   notes, dog_id, care_type_id,)
                 click.secho(
                     f"Care event '{name}' added successfully!", fg='green')
 

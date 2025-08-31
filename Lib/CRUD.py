@@ -90,6 +90,7 @@ def find_all_dogs():
 def find_all_locations():
   location = session.query(Locations).all()
   return location       
+  
 
 #find all care_types
 def find_all_care_types():
