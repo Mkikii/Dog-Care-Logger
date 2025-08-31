@@ -75,7 +75,7 @@ text
   ```
   Or using regular virtual environment:
   ```bash
-  python -m venv venv
+  python3 -m venv venv
   source venv/bin/activate  # On Windows: venv\Scripts\activate
   ```
 3. **Install the required dependencies:**
@@ -84,7 +84,7 @@ text
   ```
 4. **Initialize the database:**
   ```bash
-  python Lib/Models.py
+  python3 Lib/Models.py
   ```
 5. **Run database migrations (if needed):**
   ```bash
@@ -92,11 +92,11 @@ text
   ```
 6. **Seed the database with sample data:**
   ```bash
-  python db/seed.py
+  python3 -m Lib.db.seed
   ```
 7. **Run the application:**
   ```bash
-  python Main.py
+  python3 Main.py
   ```
 
 ## How to Use
@@ -106,7 +106,7 @@ text
 Run the main script to start the interactive CLI:
 
 ```bash
-python Main.py
+python3 Main.py
 ```
 
 ### Main Menu Options

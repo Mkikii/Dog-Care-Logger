@@ -91,19 +91,6 @@ while True:
         elif user_input == 2:
             click.secho("LOCATION MANAGEMENT OPTIONS", fg='green', bold=True)
             click.secho("1 Add new location", fg='yellow')        
-            
-            
-            
-            date_of_birth_str = click.prompt("Dog's D.O.B (YYYY-MM-DD)")
-            date_of_birth = datetime.strptime(date_of_birth_str, "%Y-%m-%d").date()
-            
-            
-            created_at_str = click.prompt("Time created (YYYY-MM-DD HH:MM:SS)")
-            created_at = datetime.strptime(created_at_str, "%Y-%m-%d %H:%M:%S")
-            
-            
-            last_attended_to_str = click.prompt("Last time attended (YYYY-MM-DD HH:MM:SS)")
-            last_attended_to = datetime.strptime(last_attended_to_str, "%Y-%m-%d %H:%M:%S")
             click.secho("2 Find location by id", fg='yellow')
             click.secho("3 Find all locations", fg='yellow')
             click.secho("4 Delete location", fg='yellow')
