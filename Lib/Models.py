@@ -46,7 +46,7 @@ class Locations(Base):
     population = Column(Integer)
 
     dogs = relationship('Dogs', back_populates='location')
-
+    
 
 class Care_types(Base):
     __tablename__ = "Care_types"
@@ -55,7 +55,23 @@ class Care_types(Base):
     description = Column(Text)
     default_interval_days = Column(Integer)
 
-    care_events = relationship('Care_events', back_populates='care_type')
+    care_events = relationship('Care_events', back_populates='care_type')    
+    
+    @property
+    def validated_name(self):
+        return self.name
+    
+    @validated_name.setter
+    def validated_name(self, value):
+        if not isinstance(value, str):
+            raise ValueError("Name must be a string")
+        if len(value.strip()) == 0:
+            raise ValueError("Name cannot be empty")
+        if len(value) > 50:
+            raise ValueError("Name cannot exceed 50 characters")
+        self.name = value.strip()
+
+
 
 
 class Care_events(Base):
