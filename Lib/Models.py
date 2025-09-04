@@ -1,11 +1,13 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Text, DateTime
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy.orm import sessionmaker, relationship, scoped_session
 from datetime import datetime
 
 engine = create_engine("sqlite:///dogs.db")
 Base = declarative_base()
-Session = sessionmaker(bind=engine)
+Session = scoped_session(sessionmaker(bind=engine))
+
+
 
 
 
@@ -96,7 +98,7 @@ if __name__ == "__main__":
     create_database()
     
 
-Base.metadata.create_all(bind=engine)
+
 
 
 session = Session()    

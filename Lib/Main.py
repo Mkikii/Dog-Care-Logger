@@ -1,9 +1,9 @@
 import click
 from datetime import datetime
 from CRUD import (add_new_Dog, add_new_Location, add_new_Care_Type, add_new_Care_Event,
-delete_dog_by_id, delete_location_by_id, delete_care_type_by_id, delete_care_event_by_id,
-find_dog_by_id, find_location_by_id, find_care_type_by_id, find_care_event_by_id,
-find_all_dogs, find_all_locations, find_all_care_types, find_all_care_events)
+                  delete_dog_by_id, delete_location_by_id, delete_care_type_by_id, delete_care_event_by_id,
+                  find_dog_by_id, find_location_by_id, find_care_type_by_id, find_care_event_by_id,
+                  find_all_dogs, find_all_locations, find_all_care_types, find_all_care_events)
 
 
 while True:
@@ -43,17 +43,21 @@ while True:
                 name = click.prompt("Dog's name")
                 breed = click.prompt("Dog's breed")
                 date_of_birth_str = click.prompt("Dog's D.O.B (YYYY-MM-DD)")
-                date_of_birth = datetime.strptime(date_of_birth_str, "%Y-%m-%d").date()
-                created_at_str = click.prompt("Time created (YYYY-MM-DD HH:MM:SS)")
-                created_at = datetime.strptime(created_at_str, "%Y-%m-%d %H:%M:%S")
+                date_of_birth = datetime.strptime(
+                    date_of_birth_str, "%Y-%m-%d").date()
+                created_at_str = click.prompt(
+                    "Time created (YYYY-MM-DD HH:MM:SS)")
+                created_at = datetime.strptime(
+                    created_at_str, "%Y-%m-%d %H:%M:%S")
                 last_attended_to_str = click.prompt(
                     "Last time the dog was attended to (YYYY-MM-DD HH:MM:SS)")
-                last_attended_to = datetime.strptime(last_attended_to_str, "%Y-%m-%d %H:%M:%S")
+                last_attended_to = datetime.strptime(
+                    last_attended_to_str, "%Y-%m-%d %H:%M:%S")
                 notes = click.prompt("Leave a note")
                 location_id = click.prompt("Location ID", type=int)
 
                 add_new_Dog(created_at, name, breed, date_of_birth,
-            location_id, last_attended_to, notes)
+                            last_attended_to, notes, location_id)
                 click.secho(f'Dog {name} added successfully!', fg='green')
 
             elif dog_management_option == 2:
@@ -90,7 +94,7 @@ while True:
 
         elif user_input == 2:
             click.secho("LOCATION MANAGEMENT OPTIONS", fg='green', bold=True)
-            click.secho("1 Add new location", fg='yellow')        
+            click.secho("1 Add new location", fg='yellow')
             click.secho("2 Find location by id", fg='yellow')
             click.secho("3 Find all locations", fg='yellow')
             click.secho("4 Delete location", fg='yellow')
@@ -216,7 +220,6 @@ while True:
                     "Do you have anything to note?", default="", show_default=False)
                 dog_id = click.prompt("Enter dog ID", type=int)
                 care_type_id = click.prompt("Enter care type ID", type=int)
-                
 
                 add_new_Care_Event(name, performed_at, details,
                                    notes, dog_id, care_type_id,)
