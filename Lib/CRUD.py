@@ -1,6 +1,5 @@
 from Models import Dogs, Locations, Care_types, Care_events, session
 
-#add new Dog
 def add_new_Dog (session, created_at, name, breed, date_of_birth, location_id,  last_attended_to,  notes):
   new_dog = Dogs(created_at = created_at, name = name, breed = breed, date_of_birth = date_of_birth, location_id = location_id,   last_attended_to = last_attended_to, notes = notes )
   session.add(new_dog)
